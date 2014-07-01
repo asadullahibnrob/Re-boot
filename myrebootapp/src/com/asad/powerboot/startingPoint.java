@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class startingPoint extends ListActivity {
-	String bootOptions[] = {"Reboot","Reboot Recovery","Reboot Bootloader","Power Off"};
+	String bootOptions[] = {"Reboot","Reboot Recovery","Reboot Bootloader","Hot Boot","Power Off","Safe Mode"};
 			
 	
 	
@@ -33,9 +33,14 @@ public class startingPoint extends ListActivity {
 			rebootBootloader();
 			break;
 		case 3:
+			hotBoot();
+			break;
+		case 4:
 			powerOff();
 			break;
-			
+		case 5:
+			safeMode();
+			break;
 		}
 		
 		
@@ -70,6 +75,31 @@ public class startingPoint extends ListActivity {
 		}
 	}
 	
+	public void hotBoot(){
+		try {
+		    Process proc = Runtime.getRuntime()
+		                    .exec(new String[]{ "su", "-c", "setprop ctl.restart zygote" });
+		    proc.waitFor();
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	}
+	
+	public void safeMode(){
+		try {
+		    Process proc = Runtime.getRuntime()
+		                    .exec(new String[]{ "su", "-c", "setprop persist.sys.safemode 1"});
+		                    
+		    proc.waitFor();
+		    Runtime.getRuntime()
+            .exec(new String[]{ "su", "-c","setprop ctl.restart zygote"});
+		    proc.waitFor();
+		    
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	}
+	
 	public void powerOff(){
 		try {
 		    Process proc = Runtime.getRuntime()
@@ -79,5 +109,20 @@ public class startingPoint extends ListActivity {
 		    ex.printStackTrace();
 		}
 	}
+	
+/*	public void moveToSystem(){
+		try {
+		    Process proc = Runtime.getRuntime()
+		                    .exec(new String[]{ "su", "-c", "mount -o remount,rw /data","mount -o remount,rw /system" });
+		    proc.waitFor();
+		    //cp -f com.asad.powerboot-1.apk /system/app/
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		}
+	}*/
+	
+	
+	
+	
 	
 }
