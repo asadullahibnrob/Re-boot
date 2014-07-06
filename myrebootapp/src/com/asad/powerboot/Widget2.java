@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
-public class Widget extends AppWidgetProvider {
+public class Widget2 extends AppWidgetProvider {
 	startingPoint bootup = new startingPoint();
 	private static final String MyOnClick = "myOnClickTag";
 	ImageView b1;
@@ -22,9 +22,9 @@ public class Widget extends AppWidgetProvider {
 
 			
 			RemoteViews views = new RemoteViews(context.getPackageName(),
-					R.layout.widgetlayout);
+					R.layout.widgetlayout2);
            // views.setImageViewResource(R.id.imageButton1, R.drawable.app_icon);
-			views.setOnClickPendingIntent(R.id.imageButton1, getPendingSelfIntent(context,MyOnClick));
+			views.setOnClickPendingIntent(R.id.imageButton2, getPendingSelfIntent(context,MyOnClick));
 
 			appWidgetManager.updateAppWidget(appWidgetId, views);
 
@@ -35,9 +35,8 @@ public class Widget extends AppWidgetProvider {
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
 		super.onReceive(context, intent);
-		
 		if (MyOnClick.equals(intent.getAction())){
-	        bootup.hotBoot();
+	        bootup.powerOff();
 	    }
 	}
 	protected PendingIntent getPendingSelfIntent(Context context, String action) {
@@ -49,4 +48,3 @@ public class Widget extends AppWidgetProvider {
 	
 
 }
-

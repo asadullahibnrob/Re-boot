@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android" 
   android:minWidth="66dp" 
   android:minHeight="66dp" 
-  android:initialLayout="@layout/widgetlayout"
+  android:initialLayout="@layout/widgetlayout2"
   android:updatePeriodMillis="0"
- >
+  >
 </appwidget-provider>
