@@ -1,50 +1,33 @@
 package com.asad.powerboot;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class startingPoint extends ListActivity {
-	String bootOptions[] = {"Reboot","Reboot Recovery","Reboot Bootloader","Hot Boot","Power Off","Safe Mode"};
-			
+public class startingPoint extends Activity implements OnItemClickListener{
+	String bootOptions[] = {"Reboot","Recovery","Bootloader","Hot Boot","Power Off","Safe Mode"};
+	ListView list;		
 	
 	
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , bootOptions));
+        setContentView(R.layout.mlist);
+        list = (ListView)findViewById(R.id.listview);
+        list.setPadding(10, 5, 10, 5);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row, bootOptions);
+        list.setAdapter(adapter);
+       
+        list.setOnItemClickListener(this);
     }
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		super.onListItemClick(l, v, position, id);
-		switch(position){
-		case 0:
-			reboot();
-			break;
-		case 1:
-			rebootRecovery();
-			break;
-		case 2:
-			rebootBootloader();
-			break;
-		case 3:
-			hotBoot();
-			break;
-		case 4:
-			powerOff();
-			break;
-		case 5:
-			safeMode();
-			break;
-		}
-		
-		
-	}
+	
 	public void reboot(){
 		try {
 		    Process proc = Runtime.getRuntime()
@@ -108,6 +91,32 @@ public class startingPoint extends ListActivity {
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		switch(position){
+		case 0:
+			reboot();
+			break;
+		case 1:
+			rebootRecovery();
+			break;
+		case 2:
+			rebootBootloader();
+			break;
+		case 3:
+			hotBoot();
+			break;
+		case 4:
+			powerOff();
+			break;
+		case 5:
+			safeMode();
+			break;
+		}
+		
 	}
 	
 /*	public void moveToSystem(){

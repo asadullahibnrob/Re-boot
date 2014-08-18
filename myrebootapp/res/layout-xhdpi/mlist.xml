@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#E5E8FC">
+  
+ <TextView android:layout_height="60dp" 
+ android:id="@+id/imageView1" 
+ android:layout_width="fill_parent" 
+ android:text="Re-Boot"
+ android:textColor="#FFFFFF"
+ android:textSize="43dp"
+ android:gravity="center_vertical"
+ android:paddingLeft="100dp"
+ android:typeface="serif"
+ android:background="#0099CC"></TextView>
+
+
+<ListView
+ 
+  android:id="@+id/listview"
+  android:layout_marginTop="40dp"
+  android:layout_marginLeft="20dp"
+  android:layout_marginRight="20dp"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_below="@id/imageView1"
+  android:divider="@android:color/transparent"
+  android:dividerHeight="10.0dp"
+  android:background="#E5E8FC">
+</ListView>
+</RelativeLayout>
