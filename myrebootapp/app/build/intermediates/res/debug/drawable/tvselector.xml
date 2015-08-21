@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/iconbackgroundselected"/>
+    <item android:state_focused="true" android:drawable="@drawable/iconbackgroundselected"/>
+<item android:drawable="@drawable/iconbackground"/>
+</selector><!-- From: file:/C:/Users/machine7/Documents/sourceCode/reboot/app/src/main/res/drawable/tvselector.xml -->
